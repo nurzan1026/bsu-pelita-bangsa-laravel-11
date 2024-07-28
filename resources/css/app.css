@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @layer base {
+  h1 {
+    @apply text-2xl;
+    color: theme("colors.primary");
+  }
+  h2 {
+    @apply text-xl;
+  }
+} */
+
+@layer components {
+    .grid-card {
+        @apply bg-teal-600 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden relative hover:scale-95 transition-all duration-700;
+    }
+    .grid-card-img {
+        @apply w-full h-full bg-cover bg-center absolute group-hover:scale-125 group-hover:rotate-12 transition-all duration-700;
+    }
+    .hamburger-line {
+        @apply w-[30px] h-[2px] bg-hitam block my-2;
+    }
+    /* todo ==== style toggle ==== */
+    /* .custom {
+    @apply w-12 h-5 bg-gray-400 rounded-full border-2 border-gray-500 items-center flex;
+  }
+  .saya {
+    @apply w-4 h-4 bg-gray-200 rounded-full duration-700;
+  } */
+    /* todo ==== akhir style toggle ==== */
+}
+@layer utilities {
+}
+
+.navbar-fixed {
+    @apply fixed z-[9999] bg-slate-300 opacity-70;
+    backdrop-filter: blur(5px);
+    box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.hamburger-active > span:nth-child(1) {
+    @apply rotate-45;
+}
+.hamburger-active > span:nth-child(2) {
+    @apply scale-0;
+}
+.hamburger-active > span:nth-child(3) {
+    @apply -rotate-45;
+}
+
+/* dashboar */
+@layer utilities {
+  .sidebar {
+    @apply fixed top-0 left-0 h-screen text-primary z-50 transition-transform duration-300 ease-in-out;
+    width: 16rem;
+  }
+  .sidebar.collapsed {
+    @apply -translate-x-full;
+  }
+  /* .sidebar-header {
+    @apply flex justify-between items-center p-4;
+  } */
+  .sidebar-header h1 {
+    @apply m-0 text-xl font-bold;
+  }
+  .main-content {
+    @apply transition-all duration-300 ease-in-out;
+    /* Adjust based on sidebar width */
+  }
+  /* didalam main conten margin-left: 16rem; */
+  .main-content.sidebar-collapsed {
+    @apply ml-0;
+  }
+  .hamburger-button {
+    @apply bg-primary text-white border-none rounded-full w-10 h-10 flex items-center justify-center cursor-pointer mr-4;
+  }
+  .hamburger-button .material-icons {
+    @apply text-xl;
+  }
+  .header {
+    @apply flex items-center w-full  justify-between bg-primary shadow-lg;
+  }
+  .dropdown-menu {
+    z-index: 1000;
+  }
+}
