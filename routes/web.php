@@ -99,9 +99,19 @@ Route::get('/admin/nasabah', function () {
 Route::get('/nasabah/dashboard', function () {
     return view('nasabah-page.dashboard');
 })->name('nasabah.dashboard');
-Route::get('/nasabah/permintaan-penarikan', function () {
-    return view('nasabah-page.permintaan-penarikan');
-})->name('nasabah.permintaan-penarikan');
+
+Route::get('/nasabah/penarikan-saldo', function () {
+    return view('nasabah-page.penarikan-saldo');
+})->name('nasabah.penarikan-saldo');
+Route::get('/nasabah/penarikan-poin', function () {
+    return view('nasabah-page.penarikan-poin');
+})->name('nasabah.penarikan-poin');
+Route::get('/nasabah/riwayat-penarikan-poin', function () {
+    return view('nasabah-page.riwayat-penarikan-poin');
+})->name('nasabah.riwayat-penarikan-poin');
+Route::get('/nasabah/riwayat-penarikan-saldo', function () {
+    return view('nasabah-page.riwayat-penarikan-saldo');
+})->name('nasabah.riwayat-penarikan-saldo');
 Route::get('/nasabah/profile', function () {
     return view('nasabah-page.profile');
 })->name('nasabah.profile');
@@ -110,4 +120,4 @@ Route::get('/nasabah/riwayat-setoran', function () {
 })->name('nasabah.riwayat-setoran');
 Route::get('/nasabah/setoran-sampah', function () {
     return view('nasabah-page.setoran-sampah');
-})->name('nasabah.setoran-sampah');
+})->name('nasabah.setoran-sampah'); 
