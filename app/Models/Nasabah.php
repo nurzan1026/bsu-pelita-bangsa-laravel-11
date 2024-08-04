@@ -1,13 +1,22 @@
 <?php
-    
-    namespace App\Models;
 
-    use Illuminate\Foundation\Auth\User as Authenticatable;
-    
-    class Nasabah extends Authenticatable
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Nasabah extends Model
+{
+    use HasFactory;
+
+    protected $table = 'nasabahs';
+
+    protected $fillable = [
+        'nama', 'nomor_induk', 'username', 'email', 'password', 'alamat', 'foto',
+    ];
+
+    public function setoran()
     {
-        protected $fillable = [
-            'name', 'email', 'password',
-        ];
+        return $this->hasMany(Setoran::class);
     }
-    
+}

@@ -13,8 +13,8 @@
             </li>
 
             <li>
-                <a href="{{ route('nasabah.riwayat-setoran') }}"
-                    class="flex items-center text-sm font-bold p-2 rounded {{ request()->routeIs('nasabah.riwayat-setoran') ? 'bg-hijau text-white' : 'hover:bg-hijau hover:text-white' }}">
+                <a href="{{ route('nasabah.riwayat-setoran-sampah') }}"
+                    class="flex items-center text-sm font-bold p-2 rounded {{ request()->routeIs('nasabah.riwayat-setoran-sampah') ? 'bg-hijau text-white' : 'hover:bg-hijau hover:text-white' }}">
                     <span class="material-icons">bookmark</span>
                     <span class="ml-2">Riwayat Setoran</span>
                 </a>

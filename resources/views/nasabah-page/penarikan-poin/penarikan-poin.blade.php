@@ -5,7 +5,7 @@
         <h1 class="font-bold text-3xl text-gray-900">Penarikan Poin</h1>
     </div>
     <div class="bg-white p-6 rounded-lg shadow-md">
-        <form action="{{ route('nasabah.penarikan-poin') }}" method="POST">
+        <form action="{{ route('nasabah.penarikan-poin.store') }}" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="tanggalPenarikan" class="block text-sm font-medium text-gray-700">Tanggal</label>

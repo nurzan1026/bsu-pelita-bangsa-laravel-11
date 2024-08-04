@@ -1,123 +1,76 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Illuminate\Auth\Events\PasswordReset;
+use App\Http\Controllers\SampahController;
+use App\Http\Controllers\NasabahController;
+use App\Http\Controllers\SetoranController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DaurUlangController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\PengelolaanController;
+use App\Http\Controllers\PenarikanPoinController;
+use App\Http\Controllers\PenarikanSaldoController;
 
-// Halaman utama
+// !  ========== Halaman utama Landing page==============
 Route::get('/', function () {
     return view('pelita-bangsa');
 });
 
-// Login Admin
-Route::get('/admin/login', [AuthController::class, 'showAdminLoginForm'])->name('admin.login');
-Route::post('/admin/login', [AuthController::class, 'adminLogin']);
+// ! ============  Halaman bsu ======================
+Route::get('/unit/dashboard', [DashboardController::class, 'index'])->name('unit.dashboard');
+Route::get('/setoran', [SetoranController::class, 'index'])->name('setoran.index');
+Route::post('/setoran', [SetoranController::class, 'store'])->name('setoran.store');
+Route::get('/nasabah/search', [NasabahController::class, 'search'])->name('nasabah.search');
+Route::get('/setoran/export-pdf', [SetoranController::class, 'setoranExportPDF'])->name('setoran.setoranExportPDF');
+Route::get('/rekap-tahunan/export-pdf', [SetoranController::class, 'rekapTahunanExportPDF'])->name('rekap.export.pdf');
+Route::get('/laporan/penjualan/export-pdf', [PenjualanController::class, 'penjualanExportPDF'])->name('penjualan.exportPdf');
+Route::get('/laporan/daur-ulang/export-pdf', [DaurUlangController::class, 'exportPdf'])->name('daur_ulang.exportPdf');
+Route::get('/laporan/pengelolaan/export-pdf', [PengelolaanController::class, 'pengelolaanExportPDF'])->name('pengelolaan.export.pdf');
+Route::get('/laporan/setoran/excel', [SetoranController::class, 'setoranExportExcel'])->name('setoran.exportExcel');
+Route::get('/laporan/tahunan/export-excel', [SetoranController::class, 'rekapTahunanExportExcel'])->name('rekap.export.excel');
+Route::get('/laporan/penjualan/export-excel', [PenjualanController::class, 'penjualanExportExcel'])->name('penjualan.exportExcel');
+Route::get('/laporan/daur-ulang/export-excel', [DaurUlangController::class, 'exportExcel'])->name('daur_ulang.exportExcel');
+Route::get('/laporan/pengelolaan/export-excel', [PengelolaanController::class, 'pengelolaanExportExcel'])->name('pengelolaan.export.excel');
+Route::resource('setoran', SetoranController::class)->except(['create', 'edit', 'show']);
+Route::get('/setoran/{id}/detail', [SetoranController::class, 'show'])->name('setoran.show');
+Route::get('/setoran/{id}/edit', [SetoranController::class, 'edit'])->name('setoran.edit');
+Route::put('/setoran/{id}', [SetoranController::class, 'update'])->name('setoran.update');
+Route::get('/nasabah', [NasabahController::class, 'index'])->name('nasabah.index');
+Route::post('/nasabah', [NasabahController::class, 'store'])->name('nasabah.store');
+Route::delete('/nasabah/{id}', [NasabahController::class, 'destroy'])->name('nasabah.destroy');
+Route::put('/nasabah/{id}', [NasabahController::class, 'update'])->name('nasabah.update');
+Route::get('/nasabah/{id}', [NasabahController::class, 'show'])->name('nasabah.show');
+Route::get('/kategori', [SampahController::class, 'indexKategori'])->name('sampah.kategori');
+Route::get('/setoran/search', [SetoranController::class, 'search'])->name('setoran.search');
+Route::get('/laporan/setoran', [SetoranController::class, 'rekapSetoran'])->name('setoran.rekapSetoran');
+Route::get('/laporan/tahunan', [SetoranController::class, 'rekapTahunan'])->name('setoran.rekapTahunan');
+Route::get('/laporan/penjualan', [PenjualanController::class, 'index'])->name('penjualan.laporan');
+Route::post('/penjualan/store', [PenjualanController::class, 'store'])->name('penjualan.store');
+Route::get('/laporan/pengelolaan', [PengelolaanController::class, 'laporanPengelolaan'])->name('laporan.pengelolaan');
+Route::get('/laporan/daur-ulang', [DaurUlangController::class, 'index'])->name('daur_ulang.index');
+Route::post('/daur-ulang/store', [DaurUlangController::class, 'store'])->name('daur_ulang.store');
 
-// Login Nasabah
-Route::get('/nasabah/login', [AuthController::class, 'showNasabahLoginForm'])->name('nasabah.login');
-Route::post('/nasabah/login', [AuthController::class, 'nasabahLogin']);
+//  ! ==================== Halaman nasabah  ===========================
+Route::prefix('nasabah')->name('nasabah.')->group(function () {
+    Route::view('dashboard', 'nasabah-page.dashboard.dashboard')->name('dashboard');
 
-// Register Admin
-Route::get('/admin/register', [AuthController::class, 'showAdminRegisterForm'])->name('admin.register');
-Route::post('/admin/register', [AuthController::class, 'adminRegister']);
-
-// Register Nasabah
-Route::get('/nasabah/register', [AuthController::class, 'showNasabahRegisterForm'])->name('nasabah.register');
-Route::post('/nasabah/register', [AuthController::class, 'nasabahRegister']);
-
-// Lupa Password (Forgot Password)
-Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
-    ->middleware('guest')
-    ->name('password.request');
-
-Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
-    ->middleware('guest')
-    ->name('password.email');
-
-Route::get('/reset-password/{token}', function ($token) {
-    return view('auth.reset-password', ['token' => $token]);
-})->middleware('guest')->name('password.reset');
-
-Route::post('/reset-password', function (Request $request) {
-    $request->validate([
-        'token' => 'required',
-        'email' => 'required|email',
-        'password' => 'required|min:8|confirmed',
-    ]);
-
-    $status = Password::reset(
-        $request->only('email', 'password', 'password_confirmation', 'token'),
-        function ($user, $password) {
-            $user->forceFill([
-                'password' => Hash::make($password)
-            ])->save();
-
-            $user->setRememberToken(Str::random(60));
-
-            event(new PasswordReset($user));
-        }
-    );
-
-    return $status === Password::PASSWORD_RESET
-                ? redirect()->route('login')->with('status', __($status))
-                : back()->withErrors(['email' => [__($status)]]);
-})->middleware('guest')->name('password.update');
-
-// ! Halaman Admin
-Route::get('/admin/dashboard', function () {
-    return view('admin-page.dashboard');
-})->name('admin.dashboard');
-Route::get('/admin/data-sampah', function () {
-    return view('admin-page.data-sampah');
-})->name('admin.data-sampah');
-Route::get('/admin/admin', function () {
-    return view('admin-page.admin');
-})->name('admin.admin');
-Route::get('/admin/profile', function () {
-    return view('admin-page.profile');
-})->name('admin.profile');
-Route::get('/admin/riwayat-setoran', function () {
-    return view('admin-page.riwayat-setoran');
-})->name('admin.riwayat-setoran');
-Route::get('/admin/setoran-sampah', function () {
-    return view('admin-page.setoran-sampah');
-})->name('admin.setoran-sampah');
-Route::get('/admin/data-sampah', function () {
-    return view('admin-page.data-sampah');
-})->name('admin.data-sampah');
-
-Route::get('/admin/nasabah', function () {
-    return view('admin-page.nasabah');
-})->name('admin.nasabah');
-
-// ! Halaman nasabah
-Route::get('/nasabah/dashboard', function () {
-    return view('nasabah-page.dashboard');
-})->name('nasabah.dashboard');
-
-Route::get('/nasabah/penarikan-saldo', function () {
-    return view('nasabah-page.penarikan-saldo');
-})->name('nasabah.penarikan-saldo');
-Route::get('/nasabah/penarikan-poin', function () {
-    return view('nasabah-page.penarikan-poin');
-})->name('nasabah.penarikan-poin');
-Route::get('/nasabah/riwayat-penarikan-poin', function () {
-    return view('nasabah-page.riwayat-penarikan-poin');
-})->name('nasabah.riwayat-penarikan-poin');
-Route::get('/nasabah/riwayat-penarikan-saldo', function () {
-    return view('nasabah-page.riwayat-penarikan-saldo');
-})->name('nasabah.riwayat-penarikan-saldo');
-Route::get('/nasabah/profile', function () {
-    return view('nasabah-page.profile');
-})->name('nasabah.profile');
-Route::get('/nasabah/riwayat-setoran', function () {
-    return view('nasabah-page.riwayat-setoran');
-})->name('nasabah.riwayat-setoran');
-Route::get('/nasabah/setoran-sampah', function () {
-    return view('nasabah-page.setoran-sampah');
-})->name('nasabah.setoran-sampah'); 
+    // Penarikan Poin
+    Route::get('riwayat-penarikan-poin', [PenarikanPoinController::class, 'index'])->name('riwayat-penarikan-poin');
+    Route::post('penarikan-poin', [PenarikanPoinController::class, 'store'])->name('penarikan-poin.store');
+    
+    // Penarikan Saldo
+    Route::post('penarikan-saldo', [PenarikanSaldoController::class, 'store'])->name('penarikan-saldo.store');
+    Route::get('riwayat-penarikan-saldo', [PenarikanSaldoController::class, 'index'])->name('riwayat-penarikan-saldo');
+    
+    // Profile
+    Route::view('profile', 'nasabah-page.profile.profile')->name('profile');
+    
+    // Riwayat Penarikan Poin
+    Route::view('riwayat-penarikan-poin', 'nasabah-page.riwayat-penarikan-poin.riwayat-penarikan-poin')->name('riwayat-penarikan-poin');
+    
+    // Riwayat Penarikan Saldo
+    Route::view('riwayat-penarikan-saldo', 'nasabah-page.riwayat-penarikan-saldo.riwayat-penarikan-saldo')->name('riwayat-penarikan-saldo');
+    
+    // Riwayat Setoran Sampah
+    Route::view('riwayat-setoran-sampah', 'nasabah-page.riwayat-setoran-sampah.riwayat-setoran-sampah')->name('riwayat-setoran-sampah');
+});
