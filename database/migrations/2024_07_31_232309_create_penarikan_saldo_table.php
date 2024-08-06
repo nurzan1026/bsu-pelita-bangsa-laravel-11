@@ -9,6 +9,7 @@ class CreatePenarikanSaldoTable extends Migration
     {
         Schema::create('penarikan_saldo', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
             $table->date('tanggal');
             $table->integer('jumlah');
             $table->string('status')->default('pending');

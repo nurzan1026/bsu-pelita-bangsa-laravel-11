@@ -8,6 +8,12 @@
         <form action="{{ route('nasabah.penarikan-saldo.store') }}" method="POST">
             @csrf
             <div class="mb-4">
+                <label for="namaNasabah" class="block text-sm font-medium text-gray-700">Nama Nasabah</label>
+                <input type="text" id="namaNasabah" name="nama"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                    required />
+            </div>
+            <div class="mb-4">
                 <label for="tanggalPenarikan" class="block text-sm font-medium text-gray-700">Tanggal</label>
                 <input type="date" id="tanggalPenarikan" name="tanggal"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"

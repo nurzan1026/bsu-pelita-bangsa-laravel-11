@@ -105,7 +105,7 @@
                     <a href="#"
                         class="rounded-md bg-primary px-3 py-2 md:px-6 md:py-3 text-sm font-bold text-slate-100 shadow-sm hover:bg-hijau">Login
                         Admin</a>
-                    <a href="#"
+                    <a href="{{ route('nasabah.login') }}"
                         class="rounded-md bg-blue-600 px-3 py-2 md:px-6 md:py-3 text-sm font-bold text-slate-100 shadow-sm hover:bg-blue-500">Login
                         Nasabah</a>
                 </div>

@@ -8,7 +8,6 @@
     <title>REGISTER BSU</title>
     @vite('resources/css/app.css')
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" />
 </head>
 
 <body class="font-Quicksand">
@@ -27,26 +26,22 @@
                 <h2 class="text-2xl font-bold mt-4 mb-4 text-primary">Register</h2>
                 <form action="{{ route('nasabah.register') }}" method="POST" class="flex flex-col">
                     @csrf
-                    <div class="flex flex-col mb-3 relative">
-                        <i class="fi fi-rr-user absolute top-9 right-5 text-zinc-400"></i>
+                    <div class="flex flex-col mb-3">
                         <label for="register-name" class="mb-1 text-gray-900 text-sm">Nama</label>
                         <input type="text" id="register-name" name="name" placeholder="Masukkan nama anda"
                             class="px-3 py-2 border-2 border-slate-300 rounded-md max-w-full focus:border-hijau focus:outline-none text-sm" />
                     </div>
-                    <div class="flex flex-col mb-3 relative">
-                        <i class="fi fi-rr-envelope absolute top-9 right-5 text-zinc-400"></i>
+                    <div class="flex flex-col mb-3">
                         <label for="register-email" class="mb-1 text-gray-900 text-sm">Email</label>
                         <input type="email" id="register-email" name="email" placeholder="Masukkan email anda"
                             class="px-3 py-2 border-2 border-slate-300 rounded-md max-w-full focus:border-hijau focus:outline-none text-sm" />
                     </div>
-                    <div class="flex flex-col mb-3 relative">
-                        <i class="fi fi-rr-lock absolute top-9 right-5 text-gray-400"></i>
+                    <div class="flex flex-col mb-3">
                         <label for="register-password" class="mb-1 text-gray-900 text-sm">Password</label>
                         <input type="password" id="register-password" name="password" placeholder="Buat password anda"
                             class="px-3 py-2 border-2 border-slate-300 rounded-md max-w-full focus:outline-none focus:border-hijau text-sm" />
                     </div>
-                    <div class="flex flex-col mb-3 relative">
-                        <i class="fi fi-rr-lock absolute top-9 right-5 text-gray-400"></i>
+                    <div class="flex flex-col mb-3">
                         <label for="register-confirm-password" class="mb-1 text-gray-900 text-sm">Konfirmasi
                             Password</label>
                         <input type="password" id="register-confirm-password" name="password_confirmation"

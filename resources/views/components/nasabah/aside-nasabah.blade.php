@@ -80,11 +80,17 @@
         </ul>
     </nav>
     <div class="p-4">
-        <a href="/logout" class="flex items-center text-sm p-2 font-bold rounded hover:bg-hijau hover:text-white">
-            <span class="material-icons">logout</span>
-            <span class="ml-2">Logout</span>
-        </a>
+        <form action="{{ route('logout') }}" method="POST" class="flex items-center">
+            @csrf
+            @method('POST')
+            <button type="submit"
+                class="flex items-center text-sm p-2 font-bold rounded hover:bg-hijau hover:text-white">
+                <span class="material-icons">logout</span>
+                <span class="ml-2">Logout</span>
+            </button>
+        </form>
     </div>
+
 </aside>
 
 <script>

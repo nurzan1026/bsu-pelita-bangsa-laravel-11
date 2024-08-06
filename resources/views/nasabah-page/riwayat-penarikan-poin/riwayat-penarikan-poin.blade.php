@@ -12,6 +12,8 @@
                         <tr>
                             <th class="px-6 py-3 text-center font-bold uppercase tracking-wider border border-gray-300">No
                             </th>
+                            <th class="px-6 py-3 text-center font-bold uppercase tracking-wider border border-gray-300">Nama
+                            </th>
                             <th class="px-6 py-3 text-center font-bold uppercase tracking-wider border border-gray-300">
                                 Tanggal</th>
                             <th class="px-6 py-3 text-center font-bold uppercase tracking-wider border border-gray-300">
@@ -26,6 +28,7 @@
                         @foreach ($riwayat as $item)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap border border-gray-300">{{ $loop->iteration }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap border border-gray-300">{{ $item->nama }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap border border-gray-300">{{ $item->tanggal }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap border border-gray-300">{{ $item->jumlah }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap border border-gray-300">{{ $item->opsi }}</td>
