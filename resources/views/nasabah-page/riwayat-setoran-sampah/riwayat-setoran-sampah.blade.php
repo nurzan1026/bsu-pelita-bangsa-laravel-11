@@ -58,11 +58,11 @@
     <div id="lihatModal" class="fixed z-50 inset-0 overflow-y-auto hidden">
         <div class="flex items-center justify-center min-h-screen px-4">
             <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                <div class="absolute inset-0 bg-gray-500 opacity-45"></div>
             </div>
             <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all max-w-lg w-full p-6">
                 <div class="flex justify-between items-center pb-3">
-                    <h3 class="text-2xl leading-6 font-bold text-primary">Lihat Setoran</h3>
+                    <h3 class="text-3xl leading-6 font-bold text-primary">Lihat Setoran</h3>
                     <button class="text-gray-400 hover:text-gray-500" onclick="closeModal('lihatModal')">
                         <span class="material-icons">close</span>
                     </button>

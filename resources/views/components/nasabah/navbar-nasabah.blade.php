@@ -3,11 +3,6 @@
         <button id="hamburgerButton" class="ml-5 mr-2">
             <span class="material-icons text-white text-2xl">menu</span>
         </button>
-        <input type="text" placeholder="Cari disini"
-            class="bg-gray-100 rounded-lg py-1 px-8 border-2 border-hijau ml-5" />
-        <button class="bg-hijau border-2 border-green-500 text-white py-1 px-2 rounded-lg ml-2">
-            Search
-        </button>
     </div>
     <div class="ml-auto flex items-center mr-10 relative">
         <button id="adminButton" class="flex items-center">
