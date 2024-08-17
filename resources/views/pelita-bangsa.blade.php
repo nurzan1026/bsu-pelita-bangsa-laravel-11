@@ -15,6 +15,8 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
@@ -28,7 +30,7 @@
                     <img class="h-12 lg:h-16 w-auto rounded-full" src="{{ asset('img/logo-bsu.jpg') }}"
                         alt="Logo" />
                 </a>
-                <span class="ml-3 text-xl lg:text-2xl font-bold leading-6 text-white">Bank Sampah</span>
+                <span class="ml-3 text-xl lg:text-2xl font-bold leading-6 text-white">BSU Pelita Bangsa</span>
             </div>
 
             <div class="flex lg:hidden">
@@ -47,10 +49,20 @@
                 <a href="#Kerajinan" class="text-lg font-bold leading-6 text-white hover:text-teal-200">Kerajinan</a>
                 <a href="#Kontak" class="text-lg font-bold leading-6 text-white hover:text-teal-200">Kontak</a>
             </div>
-        </nav>
-        <!-- todo ============= Mobile menu ============== -->
-        <div id="mobile-menu" class="hidden lg:hidden" role="dialog" aria-modal="true">
 
+            <!-- Button Login -->
+            <div class="hidden lg:flex items-center">
+                <a href="{{ route('nasabah.login') }}"
+                    class="flex items-center bg-white text-primary hover:text-teal-200 hover:bg-primary p-2 rounded-lg font-bold">
+                    <span class="material-icons mr-1">login</span>
+                    Login
+                </a>
+            </div>
+
+        </nav>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden lg:hidden" role="dialog" aria-modal="true">
             <div
                 class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                 <div class="flex items-center justify-between bg-primary rounded-lg p-2">
@@ -80,11 +92,21 @@
                             <a href="#Kontak"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-primary hover:text-slate-100 text-center">Kontak</a>
                         </div>
+                        <!-- Add Login Button for Mobile Menu -->
+                        <div class="py-6">
+                            <a href="{{ route('nasabah.login') }}"
+                                class="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-primary hover:text-slate-100 text-center">
+                                <span class="material-icons mr-1">login</span>
+                                Login
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
+
+
     {{-- ! ===== header navbar end ==== --}}
     <div class="relative isolate px-6 pt-5 lg:px-8 bg-cover bg-center"
         style="background-image: url('{{ asset('images/trash-2.jpeg') }}')" id="Beranda">
@@ -101,14 +123,14 @@
                     meningkatkan kesadaran masyarakat tentang pentingnya daur ulang
                     dan pengelolaan sampah."
                 </p>
-                <div class="mt-10 flex items-center justify-start gap-x-6">
+                {{-- <div class="mt-10 flex items-center justify-start gap-x-6">
                     <a href="#"
                         class="rounded-md bg-primary px-3 py-2 md:px-6 md:py-3 text-sm font-bold text-slate-100 shadow-sm hover:bg-hijau">Login
                         Admin</a>
                     <a href="{{ route('nasabah.login') }}"
                         class="rounded-md bg-blue-600 px-3 py-2 md:px-6 md:py-3 text-sm font-bold text-slate-100 shadow-sm hover:bg-blue-500">Login
                         Nasabah</a>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
@@ -122,17 +144,17 @@
             <div
                 class="text-center text-white bg-white bg-opacity-10 p-6 rounded-lg shadow-lg w-full md:flex-1 max-w-xs md:max-w-none">
                 <h2 class="text-xl md:text-2xl font-bold">Jumlah Nasabah</h2>
-                <p class="text-lg">1234</p>
+                <p class="text-lg">50</p>
             </div>
             <div
                 class="text-center text-white bg-white bg-opacity-10 p-6 rounded-lg shadow-lg w-full md:flex-1 max-w-xs md:max-w-none">
                 <h2 class="text-xl md:text-2xl font-bold">Total Sampah Terangkut Bulan Ini</h2>
-                <p class="text-lg">5678 kg</p>
+                <p class="text-lg">100 kg</p>
             </div>
             <div
                 class="text-center text-white bg-white bg-opacity-10 p-6 rounded-lg shadow-lg w-full md:flex-1 max-w-xs md:max-w-none">
                 <h2 class="text-xl md:text-2xl font-bold">Penjualan Sampah</h2>
-                <p class="text-lg">Rp 123,456,789</p>
+                <p class="text-lg">Rp 1000.000</p>
             </div>
         </div>
     </div>
@@ -219,8 +241,7 @@
                 <!-- Card for DLH (Dinas Lingkungan Hidup) -->
                 <div class="flex flex-col items-center p-3 bg-white rounded-lg shadow-md max-w-xs text-center">
                     <div class="w-full h-32 overflow-hidden mb-4">
-                        <img src="{{ asset('images/company-1.jpeg') }}" alt="DLH"
-                            class="w-full h-full object-cover">
+                        <img src="{{ asset('img/dlh-logo.png') }}" alt="DLH" class="w-full h-full object-cover">
                     </div>
                     <p class="text-lg font-semibold mb-2">Dinas Lingkungan Hidup</p>
                     <p class="text-sm text-gray-700 text-justify">Dinas Lingkungan Hidup (DLH) adalah instansi
@@ -231,8 +252,7 @@
                 <!-- Card for UPTD (Unit Pelaksana Teknis Dinas) -->
                 <div class="flex flex-col items-center p-3 bg-white rounded-lg shadow-md max-w-xs text-center">
                     <div class="w-full h-32 overflow-hidden mb-4">
-                        <img src="{{ asset('images/company-2.jpeg') }}" alt="UPTD"
-                            class="w-full h-full object-cover">
+                        <img src="{{ asset('img/bsp3.jpg') }}" alt="UPTD" class="w-full h-full object-cover">
                     </div>
                     <p class="text-lg font-semibold mb-2">Unit Pelaksana Teknis Dinas</p>
                     <p class="text-sm text-gray-700 text-justify">Unit Pelaksana Teknis Dinas (UPTD) adalah unit teknis
@@ -242,7 +262,7 @@
                 <!-- Card for another waste management organization -->
                 <div class="flex flex-col items-center p-3 bg-white rounded-lg shadow-md max-w-xs text-center">
                     <div class="w-full h-32 overflow-hidden mb-4">
-                        <img src="{{ asset('images/company-3.jpeg') }}" alt="Organization"
+                        <img src="{{ asset('img/partner3.png') }}" alt="Organization"
                             class="w-full h-full object-cover">
                     </div>
                     <p class="text-lg font-semibold mb-2">Organisasi Pengelolaan Sampah</p>
@@ -250,18 +270,6 @@
                         pengelolaan sampah di Makassar. Mereka bekerja sama dengan pemerintah dan masyarakat untuk
                         menciptakan lingkungan yang bersih dan sehat melalui berbagai program pengelolaan sampah yang
                         inovatif.</p>
-                </div>
-                <!-- Card for local recycling initiative -->
-                <div class="flex flex-col items-center p-3 bg-white rounded-lg shadow-md max-w-xs text-center">
-                    <div class="w-full h-32 overflow-hidden mb-4">
-                        <img src="{{ asset('images/company-4.jpeg') }}" alt="Recycling Initiative"
-                            class="w-full h-full object-cover">
-                    </div>
-                    <p class="text-lg font-semibold mb-2">Inisiatif Daur Ulang Lokal</p>
-                    <p class="text-sm text-gray-700 text-justify">Inisiatif daur ulang lokal adalah program yang
-                        bertujuan untuk meningkatkan kesadaran dan partisipasi masyarakat dalam mendaur ulang sampah.
-                        Program ini berfokus pada pengurangan sampah dan pemanfaatan kembali material yang dapat didaur
-                        ulang.</p>
                 </div>
             </div>
         </div>
@@ -532,6 +540,13 @@
             }
 
             typeWriter();
+        });
+        // Script untuk toggle mobile menu
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        document.getElementById('close-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         });
     </script>
     {{-- ! ============== JavaScript end ======================= --}}

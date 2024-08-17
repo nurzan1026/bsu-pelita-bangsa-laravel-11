@@ -3,15 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PenarikanPoinController;
 use App\Http\Controllers\PenarikanSaldoController;
-
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LogoutLandingController;
-
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\NasabahAkunController;
+use App\Http\Controllers\TabunganSampahController;
 
-// Rute untuk registrasi dan login nasabah
+
+// Route untuk login, register, dan perubahan password
 Route::get('/nasabah/register', [NasabahAkunController::class, 'showRegisterForm'])->name('nasabah.register');
 Route::post('/nasabah/register', [NasabahAkunController::class, 'register']);
 
@@ -19,23 +17,18 @@ Route::get('/nasabah/login', [NasabahAkunController::class, 'showLoginForm'])->n
 Route::post('/nasabah/login', [NasabahAkunController::class, 'login']);
 
 // Rute untuk reset password
-Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+Route::get('/password/change', [NasabahAkunController::class, 'showChangeForm'])->name('password.change.form');
+Route::post('/password/change', [NasabahAkunController::class, 'change'])->name('password.change');
 
 Route::middleware('auth:nasabah')->group(function () {
     Route::get('/nasabah/dashboard', function () {
-        return view('nasabah-page.dashboard.dashboard');
+        return view('nasabah.dashboard');
     })->name('nasabah.dashboard');
-
-    Route::post('/nasabah/logout', [NasabahAkunController::class, 'logout'])->name('nasabah.logout');
 });
 
-
 // Rute halaman utama
-Route::get('/', function () {
-    return view('pelita-bangsa');
+Route::get('/nasabah', function () {
+    return view('nasabah-page.pelita-bangsa');
 });
 
 // Rute untuk Nasabah
@@ -59,8 +52,13 @@ Route::prefix('nasabah')->name('nasabah.')->group(function () {
     // Riwayat Setoran Sampah
     Route::view('riwayat-setoran-sampah', 'nasabah-page.riwayat-setoran-sampah.riwayat-setoran-sampah')->name('riwayat-setoran-sampah');
 
+    //  tabungan sampah 
+    // Route::view('sampah-masuk', 'nasabah-page.tabungan-sampah.sampah-masuk')->name('sampah-masuk');
+    // route::view('sampah-keluar', 'nasabah-page.tabungan-sampah.sampah-keluar')->name('sampah-keluar');
+    
+//    Route::get('/nasabah/sampah-masuk', [TabunganSampahController::class, 'riwayatMasuk'])->name('nasabah.sampah-masuk');
+//    Route::get('/nasabah/sampah-keluar', [TabunganSampahController::class, 'riwayatKeluar'])->name('nasabah.sampah-keluar');
 });
-
 
 // Rute logout ke halaman landing page pelita bangsa
 Route::post('logout', function () {

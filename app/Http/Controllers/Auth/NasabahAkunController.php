@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\NasabahAkun;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 
 class NasabahAkunController extends Controller
@@ -21,7 +19,7 @@ class NasabahAkunController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('nasabah')->attempt($credentials)) {
+        if (auth()->guard('nasabah')->attempt($credentials)) {
             return redirect()->route('nasabah.dashboard');
         }
 
@@ -52,5 +50,33 @@ class NasabahAkunController extends Controller
         ]);
 
         return redirect()->route('nasabah.login')->with('success', 'Registrasi berhasil. Silakan login.');
+    }
+
+    public function showChangeForm()
+    {
+        return view('auth.passwords.change');
+    }
+
+    public function change(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|exists:nasabah_akuns,email',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $user = NasabahAkun::where('email', $request->input('email'))->first();
+
+        if ($user) {
+            $user->password = Hash::make($request->input('password'));
+            $user->save();
+
+            return redirect()->route('nasabah.login')->with('status', 'Password berhasil diubah. Silakan login.');
+        }
+
+        return back()->withErrors(['email' => 'Email tidak ditemukan.']);
     }
 }
