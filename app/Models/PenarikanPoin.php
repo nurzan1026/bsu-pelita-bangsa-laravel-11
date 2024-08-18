@@ -11,7 +11,7 @@ class PenarikanPoin extends Model
 
     protected $table = 'penarikan_poin'; // Nama tabel sesuai migration
     protected $fillable = [
-        'nama', 'tanggal', 'opsi', 'jumlah', 'status',
+        'tanggal', 'opsi', 'jumlah', 'status',
     ];
 }
 

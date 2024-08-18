@@ -18,19 +18,17 @@ class PenarikanSaldoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
             'tanggal' => 'required|date',
             'jumlah' => 'required|integer|min:1',
         ]);
 
         PenarikanSaldo::create([
-            'nama' => $request->nama,
             'tanggal' => $request->tanggal,
             'jumlah' => $request->jumlah,
             'status' => 'pending',
         ]);
 
-        $message = "Penarikan saldo diajukan:\nNama: {$request->nama}\nTanggal: {$request->tanggal}\nJumlah: {$request->jumlah}";
+        $message = "Penarikan saldo diajukan:\nTanggal: {$request->tanggal}\nJumlah: {$request->jumlah}";
         $this->telegramService->sendNotification($message);
 
         return redirect()->back()->with('success', 'Penarikan saldo berhasil diajukan.');
@@ -42,4 +40,5 @@ class PenarikanSaldoController extends Controller
         return view('nasabah-page.riwayat-penarikan-saldo.riwayat-penarikan-saldo', compact('riwayat'));
     }
 }
+
 

@@ -1,7 +1,7 @@
 @extends('components.nasabah.layout-nasabah')
 
 @section('content')
-    <div class="mb-2 ml-5">
+    <div class="mb-2 ml-5 text-center">
         <h1 class="font-bold text-3xl text-gray-900">
             Setting Profile
         </h1>

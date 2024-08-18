@@ -27,10 +27,10 @@
         <nav class="flex items-center justify-between p-2 lg:px-8">
             <div class="flex lg:flex-1 items-center">
                 <a href="#" class="flex items-center">
-                    <img class="h-12 lg:h-16 w-auto rounded-full" src="{{ asset('img/logo-bsu.jpg') }}"
+                    <img class="h-12 lg:h-16 w-auto rounded-full" src="{{ asset('img/3R-Logo.jpeg') }}"
                         alt="Logo" />
                 </a>
-                <span class="ml-3 text-xl lg:text-2xl font-bold leading-6 text-white">BSU Pelita Bangsa</span>
+                <span class="ml-3 text-xl lg:text-2xl font-bold leading-6 text-white">Bank Sampah Kota Makassar</span>
             </div>
 
             <div class="flex lg:hidden">
@@ -509,7 +509,7 @@
     <script src="{{ asset('javascript/page.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const text = "Selamat Datang Di Bank Sampah Pelita Bangsa";
+            const text = "Selamat Datang Di Bank Sampah Unit Kota Makassar";
             let index = 0;
             let isAdding = true;
             const speed = 100; // Typing speed in milliseconds

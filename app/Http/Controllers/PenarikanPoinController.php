@@ -30,16 +30,16 @@ class PenarikanPoinController extends Controller
         ]);
 
         PenarikanPoin::create([
-            'nama' => $request->nama,
             'tanggal' => $request->tanggal,
             'opsi' => $request->opsi,
             'jumlah' => $request->jumlah,
             'status' => 'pending',
         ]);
 
-        $message = "Penarikan poin diajukan:\nNama: {$request->nama}\nTanggal: {$request->tanggal}\nOpsi: {$request->opsi}\nJumlah: {$request->jumlah}";
+        $message = "Penarikan poin diajukan:\nTanggal: {$request->tanggal}\nOpsi: {$request->opsi}\nJumlah: {$request->jumlah}";
         $this->telegramService->sendNotification($message);
 
         return redirect()->back()->with('success', 'Penarikan poin berhasil diajukan.');
     }
 }
+

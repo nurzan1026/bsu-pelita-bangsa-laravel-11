@@ -32,18 +32,15 @@
                         id="dropdown-menu">
                         <div class="py-1">
                             <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-900 hover:bg-primary hover:text-white">Login
+                                class="block px-4 py-2 text-sm text-gray-900 hover:bg-primary hover:text-white font-semibold">Login
                                 Admin</a>
                             <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-900 hover:bg-primary hover:text-white">Login
+                                class="block px-4 py-2 text-sm text-gray-900 hover:bg-primary hover:text-white font-semibold">Login
                                 Pengelola BSU</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-900 hover:bg-primary hover:text-white">Login
-                                Nasabah</a>
                         </div>
                     </div>
                 </div>
-                <h2 class="text-3xl font-bold mt-8 mb-6 text-primary">Login</h2>
+                <h2 class="text-3xl font-bold mt-5 mb-6 text-primary">Login</h2>
 
                 <!-- Pesan Kesalahan -->
                 @if ($errors->any())
@@ -77,7 +74,7 @@
                 </form>
                 <p class="text-gray-700 font-bold">
                     Belum memiliki akun?
-                    <a href="{{ route('nasabah.register') }}" class="text-blue-500 font-bold underline">Register</a>
+                    <a href="{{ route('nasabah.register') }}" class="text-blue-500 font-bold underline">Registrasi</a>
                 </p>
                 <p class="text-gray-700 font-bold">
                     Lupa password?

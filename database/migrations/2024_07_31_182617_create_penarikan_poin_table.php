@@ -10,7 +10,6 @@ class CreatePenarikanPoinTable extends Migration
     {
         Schema::create('penarikan_poin', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
             $table->date('tanggal');
             $table->enum('opsi', ['minyak', 'sembako']);
             $table->integer('jumlah');

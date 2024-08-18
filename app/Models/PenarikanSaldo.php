@@ -10,7 +10,6 @@ class PenarikanSaldo extends Model
 
     protected $table = 'penarikan_saldo'; // Pastikan nama tabel sesuai dengan migration
     protected $fillable = [
-        'nama',
         'tanggal',
         'jumlah',
         'status',
