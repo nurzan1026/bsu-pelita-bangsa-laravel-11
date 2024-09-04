@@ -28,9 +28,9 @@
             <div class="flex lg:flex-1 items-center">
                 <a href="#" class="flex items-center">
                     <img class="h-12 lg:h-16 w-auto rounded-full" src="{{ asset('img/3R-Logo.jpeg') }}"
-                        alt="Logo" />
+                        alt="Logo 3r" />
                 </a>
-                <span class="ml-3 text-xl lg:text-2xl font-bold leading-6 text-white">Bank Sampah Kota Makassar</span>
+                <span class="ml-3 text-xl lg:text-2xl font-bold leading-6 text-white">Sibas.id</span>
             </div>
 
             <div class="flex lg:hidden">
@@ -68,7 +68,7 @@
                 <div class="flex items-center justify-between bg-primary rounded-lg p-2">
                     <div class="flex lg:flex-1 items-center">
                         <a href="#" class="flex items-center">
-                            <img class="h-10 w-auto rounded-full" src="{{ asset('img/logo-bsu.jpg') }}"
+                            <img class="h-10 w-auto rounded-full" src="{{ asset('img/3R-Logo.jpeg') }}"
                                 alt="Logo" />
                         </a>
                         <span class="ml-2 text-md font-semibold leading-6 text-white">Bank Sampah</span>
@@ -115,7 +115,7 @@
             class="mx-auto max-w-7xl py-32 sm:py-48 lg:py-56 flex flex-col lg:flex-row items-center lg:items-start justify-between">
             <div class="lg:w-1/2 text-left">
                 <h1 class="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-800 font-caveat">
-                    <span id="typing-text"></span>
+                    <span id="typing-text" class="inline-block h-[2em]"></span>
                 </h1>
                 <p class="mt-6 lg:text-lg leading-8 text-gray-950">
                     "Bank Sampah Pelita Bangsa adalah inisiatif untuk mengelola sampah
@@ -123,14 +123,6 @@
                     meningkatkan kesadaran masyarakat tentang pentingnya daur ulang
                     dan pengelolaan sampah."
                 </p>
-                {{-- <div class="mt-10 flex items-center justify-start gap-x-6">
-                    <a href="#"
-                        class="rounded-md bg-primary px-3 py-2 md:px-6 md:py-3 text-sm font-bold text-slate-100 shadow-sm hover:bg-hijau">Login
-                        Admin</a>
-                    <a href="{{ route('nasabah.login') }}"
-                        class="rounded-md bg-blue-600 px-3 py-2 md:px-6 md:py-3 text-sm font-bold text-slate-100 shadow-sm hover:bg-blue-500">Login
-                        Nasabah</a>
-                </div> --}}
             </div>
         </div>
         <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
@@ -252,7 +244,7 @@
                 <!-- Card for UPTD (Unit Pelaksana Teknis Dinas) -->
                 <div class="flex flex-col items-center p-3 bg-white rounded-lg shadow-md max-w-xs text-center">
                     <div class="w-full h-32 overflow-hidden mb-4">
-                        <img src="{{ asset('img/bsp3.jpg') }}" alt="UPTD" class="w-full h-full object-cover">
+                        <img src="{{ asset('img/bsp.jpg') }}" alt="UPTD" class="w-full h-full object-cover">
                     </div>
                     <p class="text-lg font-semibold mb-2">Unit Pelaksana Teknis Dinas</p>
                     <p class="text-sm text-gray-700 text-justify">Unit Pelaksana Teknis Dinas (UPTD) adalah unit teknis
@@ -262,7 +254,7 @@
                 <!-- Card for another waste management organization -->
                 <div class="flex flex-col items-center p-3 bg-white rounded-lg shadow-md max-w-xs text-center">
                     <div class="w-full h-32 overflow-hidden mb-4">
-                        <img src="{{ asset('img/partner3.png') }}" alt="Organization"
+                        <img src="{{ asset('img/mall-sampah.png') }}" alt="Organization"
                             class="w-full h-full object-cover">
                     </div>
                     <p class="text-lg font-semibold mb-2">Organisasi Pengelolaan Sampah</p>
@@ -505,38 +497,21 @@
         </a>
     </div>
     {{-- ! ============== Footer end ======================= --}}
-    {{-- ! ============== JavaScript start ======================= --}}
-    <script src="{{ asset('javascript/page.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const text = "Selamat Datang Di Bank Sampah Unit Kota Makassar";
+            const text = "Selamat Datang Di Bank Sampah Pelita Bangsa";
             let index = 0;
-            let isAdding = true;
-            const speed = 100; // Typing speed in milliseconds
-            const pause = 2000; // Pause before erasing in milliseconds
+            const speed = 150;
 
             function typeWriter() {
                 const typingElement = document.getElementById('typing-text');
 
-                if (isAdding) {
-                    if (index < text.length) {
-                        typingElement.innerHTML += text.charAt(index);
-                        index++;
-                        setTimeout(typeWriter, speed);
-                    } else {
-                        isAdding = false;
-                        setTimeout(typeWriter, pause);
-                    }
-                } else {
-                    if (index > 0) {
-                        typingElement.innerHTML = text.substring(0, index - 1);
-                        index--;
-                        setTimeout(typeWriter, speed);
-                    } else {
-                        isAdding = true;
-                        setTimeout(typeWriter, speed);
-                    }
+                typingElement.textContent = text.substring(0, index);
+                index++;
+                if (index > text.length) {
+                    index = 0;
                 }
+                setTimeout(typeWriter, speed);
             }
 
             typeWriter();
@@ -549,7 +524,6 @@
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
     </script>
-    {{-- ! ============== JavaScript end ======================= --}}
 </body>
 
 </html>

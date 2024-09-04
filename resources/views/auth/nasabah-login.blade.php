@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LOGIN BSU</title>
+    <title>LOGIN NASABAH</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     @vite('resources/css/app.css')
@@ -15,8 +15,24 @@
     <main class="bg-slate-100 min-h-screen flex items-center justify-center p-6 md:p-0">
         <div class="relative bg-white shadow-lg flex flex-col lg:flex-row rounded-xl overflow-hidden lg:w-2/3 2xl:w-1/2 transition-transform"
             id="auth-container">
-            <!-- Login Form -->
+            {{-- pesan registrasi berhasil --}}
             <div class="p-8 lg:w-1/2" id="login-form">
+                @if (session('success'))
+                    <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                        role="alert">
+                        <strong class="font-bold">Berhasil !</strong>
+                        <span class="block sm:inline">{{ session('success') }}</span>
+                    </div>
+                @endif
+                {{--  pesan ubah password berhasil --}}
+                @if (session('status'))
+                    <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                        role="alert">
+                        <strong class="font-bold">Berhasil !</strong>
+                        <span class="block sm:inline">{{ session('status') }}</span>
+                    </div>
+                @endif
+
                 <div class="relative inline-block mb-4">
                     <button type="button"
                         class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-hijau text-white text-sm font-bold hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
@@ -34,13 +50,13 @@
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-gray-900 hover:bg-primary hover:text-white font-semibold">Login
                                 Admin</a>
-                            <a href="#"
+                            <a href="/unit/login"
                                 class="block px-4 py-2 text-sm text-gray-900 hover:bg-primary hover:text-white font-semibold">Login
                                 Pengelola BSU</a>
                         </div>
                     </div>
                 </div>
-                <h2 class="text-3xl font-bold mt-5 mb-6 text-primary">Login</h2>
+                <h2 class="text-3xl font-bold mt-4 mb-6 text-primary">Login</h2>
 
                 <!-- Pesan Kesalahan -->
                 @if ($errors->any())
@@ -59,13 +75,19 @@
                     @csrf
                     <div class="flex flex-col mb-4">
                         <label for="login-email" class="mb-2 text-gray-900 font-semibold">Email</label>
-                        <input type="email" id="login-email" name="email" placeholder="Masukkan email anda"
+                        <input type="email" id="login-email" name="email" placeholder="Masukkan email Anda"
                             class="px-4 py-2 border-2 border-gray-200 rounded-md max-w-full focus:border-hijau focus:outline-none" />
+                        @if ($errors->has('email'))
+                            <span class="text-red-500 text-sm mt-1">{{ $errors->first('email') }}</span>
+                        @endif
                     </div>
                     <div class="flex flex-col mb-4">
                         <label for="login-password" class="mb-2 text-gray-900 font-semibold">Password</label>
-                        <input type="password" id="login-password" name="password" placeholder="Masukkan password anda"
+                        <input type="password" id="login-password" name="password" placeholder="Masukkan password Anda"
                             class="px-4 py-2 border-2 border-gray-200 rounded-md max-w-full focus:outline-none focus:border-hijau" />
+                        @if ($errors->has('password'))
+                            <span class="text-red-500 text-sm mt-1">{{ $errors->first('password') }}</span>
+                        @endif
                     </div>
                     <button type="submit"
                         class="my-6 bg-primary hover:bg-hijau text-white font-medium text-lg px-4 py-2 rounded-md">
