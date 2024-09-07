@@ -8,6 +8,6 @@ class LogoutLandingController extends Controller
 {
     public function index()
     {
-        return view('pelita-bangsa');
+        return view('nasabah-page.pelita-bangsa');
     }
 }

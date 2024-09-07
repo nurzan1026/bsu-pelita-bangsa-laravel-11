@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,10 +9,10 @@ class PenarikanSaldo extends Model
 {
     use HasFactory;
 
-    protected $table = 'penarikan_saldo'; // Pastikan nama tabel sesuai dengan migration
-    protected $fillable = [
-        'tanggal',
-        'jumlah',
-        'status',
-    ];
+    protected $fillable = ['nasabah_id', 'tanggal', 'jumlah', 'status'];
+
+    public function nasabah()
+    {
+        return $this->belongsTo(Nasabah::class);
+    }
 }

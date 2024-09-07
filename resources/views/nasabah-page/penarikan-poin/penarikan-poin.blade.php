@@ -7,10 +7,10 @@
     </div>
     <div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
         @if (session('success'))
-        <div class="bg-green-700 text-white p-4 rounded-md mb-4 font-semibold">
-            {{ session('success') }}
-        </div>
-    @endif
+            <div class="bg-green-700 text-white p-4 rounded-md mb-4 font-semibold">
+                {{ session('success') }}
+            </div>
+        @endif
         <form action="{{ route('nasabah.penarikan-poin.store') }}" method="POST">
             @csrf
             <div class="mb-4">
@@ -20,21 +20,15 @@
                     required />
             </div>
             <div class="mb-4">
-                <label for="opsiPenarikanPoin" class="block text-sm font-medium text-gray-700">Pilih Opsi Penarikan
-                    Poin</label>
-                <select id="opsiPenarikanPoin" name="opsi"
+                <label for="rewardItem" class="block text-sm font-medium text-gray-700">Pilih Hadiah</label>
+                <select id="rewardItem" name="reward_item_id"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                     required>
-                    <option value="" disabled selected>Pilih Opsi</option>
-                    <option value="minyak">Minyak</option>
-                    <option value="sembako">Sembako</option>
+                    <option value="" disabled selected>Pilih Hadiah</option>
+                    @foreach ($rewardItems as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }} ({{ $item->poin }} Poin)</option>
+                    @endforeach
                 </select>
-            </div>
-            <div class="mb-4">
-                <label for="jumlahPenarikan" class="block text-sm font-medium text-gray-700">Jumlah Poin</label>
-                <input type="number" id="jumlahPenarikan" name="jumlah"
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
-                    placeholder="Masukkan jumlah poin" required />
             </div>
             <div class="mb-6">
                 <div class="border-t border-gray-300 my-4"></div>

@@ -9,11 +9,15 @@ class PenarikanPoin extends Model
 {
     use HasFactory;
 
-    protected $table = 'penarikan_poin'; // Nama tabel sesuai migration
-    protected $fillable = [
-        'tanggal', 'opsi', 'jumlah', 'status',
-    ];
+    protected $fillable = ['nasabah_id', 'reward_item_id', 'tanggal', 'status'];
+
+    public function nasabah()
+    {
+        return $this->belongsTo(Nasabah::class);
+    }
+
+    public function rewardItem()
+    {
+        return $this->belongsTo(RewardItem::class, 'reward_item_id');
+    }
 }
-
-
-
